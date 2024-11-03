@@ -1,0 +1,10 @@
+{
+  "ok": "OK",
+  "unauthorized": "Unauthorized",
+  "validation_errors": "Validation errors",
+  "fail_initialize_app": "Fail to Initialize App",
+  "complete_initialize_app": "Complete the Initialize App",
+  "access_denied": "Access denied",
+  "asset_access_denied": "Asset access denied",
+  "internal_server_error": "Internal Server Error"
+}

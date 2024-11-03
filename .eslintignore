@@ -1,0 +1,8 @@
+# Directories
+build/
+coverage/
+node_modules/
+docs/
+protos/
+scripts/
+test/mocha.opts

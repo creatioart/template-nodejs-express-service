@@ -1,0 +1,5 @@
+{
+  "template_not_found": "Template not found",
+  "error_creating_template": "An error occurred while creating the template",
+  "error_updating_template": "An error occurred while updating the template"
+}

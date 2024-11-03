@@ -1,0 +1,143 @@
+{
+  "name": "@creatioart/template-nodejs-express-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CreatioART - Template Node.js Express Service able to handle API's request",
+  "keywords": [
+    "template",
+    "service",
+    "nodejs",
+    "express"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://creatioart@dev.azure.com/creatioart/template/_git/template-nodejs-express-service"
+  },
+  "homepage": "https://docs.creatioart.com/template/template-nodejs-express-service",
+  "license": "Apache-2.0",
+  "author": "CreatioART - CreatioART Support <support@creatioart.com>",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:clean": "rimraf ./lib/",
+    "build:format": "npm run mdformat",
+    "build:lint": "npx eslint ./src/** --max-warnings=0 --config=.eslintrc.json",
+    "build:compile": "tsc",
+    "build:locale": "npm run locale",
+    "mdformat": "npx prettier --write *.md",
+    "prewatch": "npm run build",
+    "watch": "npm run prewatch -- -w",
+    "start": "node ./build/app.js",
+    "dev": "npm run build && cross-env APP_ENV=local npm run start",
+    "debug": "cross-env DEBUG=true && npm run dev",
+    "start:watch": "npm run watch & nodemon ./build/app.js",
+    "test": "npm-run-all test:*",
+    "test:build": "npm run build",
+    "test:clean": "rimraf ./.nyc_output/ ./coverage/",
+    "test:lint": "npx eslint ./test/** --max-warnings=0 --config=.eslintrc.json",
+    "test:start": "nyc mocha -r ts-node/register 'test/**/*.spec.ts' --exit --timeout 4000",
+    "tdd": "nodemon -e ts --watch ./test --exec \"npm run test\"",
+    "prepare": "husky",
+    "locale": "npm-run-all locale:*",
+    "locale:clean": "rimraf ./locales/compiled",
+    "locale:compile": "sh ./node_modules/@creatioart-js/express-core/scripts/compile-i18n-locates.sh ./locales/source ./locales/compiled"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "npx eslint ./src --max-warnings=0 --config=.eslintrc.json && npm run locale",
+    "*.md": "npx prettier --write *.md"
+  },
+  "nodemonConfig": {
+    "exec": "node_modules/.bin/ts-node ./src/index.ts",
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "nyc": {
+    "branches": 100,
+    "check-coverage": false,
+    "include": "src",
+    "exclude": [
+      "**/.mock/*.ts",
+      "**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "functions": 100,
+    "lines": 100,
+    "per-file": true,
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "sourceMap": true,
+    "statements": 100
+  },
+  "dependencies": {
+    "@creatioart-js/express-core": "^1.0.0",
+    "@creatioart-js/express-error": "^1.0.0",
+    "@creatioart-js/express-error-handler": "^1.0.0",
+    "@creatioart-js/express-logging": "^1.0.0",
+    "@creatioart-js/express-security": "^1.0.0",
+    "@creatioart-js/express-service": "^1.0.0",
+    "@creatioart-js/express-storage": "^1.0.0",
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/i18n": "^0.13.12",
+    "@types/node": "^22.8.6",
+    "@types/uuid": "^10.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "compression": "^1.7.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "glob": "^11.0.0",
+    "i18n": "^0.15.1",
+    "morgan": "^1.10.0",
+    "npm": "^10.9.0",
+    "reflect-metadata": "0.2.2",
+    "routing-controllers": "^0.10.4",
+    "typedi": "0.10.0",
+    "uuid": "^11.0.2"
+  },
+  "devDependencies": {
+    "@npm/types": "^2.0.0",
+    "@types/chai": "^5.0.1",
+    "@types/eslint": "<9.0.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.9",
+    "@types/morgan": "^1.9.9",
+    "@types/sinon-chai": "^4.0.0",
+    "@types/validator": "^13.12.2",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "chai": "^5.1.2",
+    "chai-http": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "eslint": "<9.0.0",
+    "eslint-plugin-n": "^17.12.0",
+    "eslint-plugin-promise": "^7.1.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "mocha": "^10.8.2",
+    "nock": "^13.5.5",
+    "nodemon": "^3.1.7",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^17.1.0",
+    "prettier": "^3.3.3",
+    "sinon": "^19.0.2",
+    "sinon-chai": "^4.0.0",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.26.11",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": "20.x.x"
+  }
+}

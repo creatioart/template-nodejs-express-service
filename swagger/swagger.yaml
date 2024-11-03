@@ -1,0 +1,587 @@
+openapi: 3.0.0
+info:
+  title: Template Node.js Express Service
+  description: CreatioART - Template Node.js Express Service able to handle API's request
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:3000/template/nodejs-express-service
+  - url: https://api-template.creatioart.com/template/nodejs-express-service
+paths:
+  /v1/templates:
+    get:
+      tags:
+        - Template
+      summary: Get templates
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+        - $ref: '#/components/parameters/filters'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageCount'
+      responses:
+        '200':
+          description: Ok
+          headers:
+            count:
+              $ref: '#/components/headers/count'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+    post:
+      tags:
+        - Template
+      summary: Create template
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateRequestDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+  /v1/templates/{templateId}:
+    get:
+      tags:
+        - Template
+      summary: Get template
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+        - $ref: '#/components/parameters/templateId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+    put:
+      tags:
+        - Template
+      summary: Put template
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+        - $ref: '#/components/parameters/templateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateRequestDto'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+    patch:
+      tags:
+        - Template
+      summary: Patch template
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+        - $ref: '#/components/parameters/templateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateRequestDto'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+    delete:
+      tags:
+        - Template
+      summary: Delete template
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+        - $ref: '#/components/parameters/templateId'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+
+components:
+  parameters:
+    authorization:
+      in: header
+      name: Authorization
+      description: Request authorization
+      required: true
+      schema:
+        type: string
+        example: 'Bearer JWT'
+    xTraceId:
+      in: header
+      name: x-trace-id
+      description: Trace request
+      required: false
+      schema:
+        type: string
+    templateId:
+      in: path
+      name: templateId
+      description: Template id
+      required: true
+      schema:
+        type: number
+    filters:
+      in: query
+      name: filters
+      description: RSQL Filters
+      required: false
+      schema:
+        type: string
+      example: name==Abc
+    sort:
+      in: query
+      name: sort
+      description: Sort
+      required: false
+      schema:
+        type: string
+      example: name,descending
+    page:
+      in: query
+      name: page
+      description: Page
+      required: false
+      schema:
+        type: integer
+      example: 1
+    pageCount:
+      in: query
+      name: pageCount
+      description: Page Count
+      required: false
+      schema:
+        type: integer
+      example: 10      
+  headers:
+    count:
+      description: Item count
+      schema:
+        type: integer
+        example: 10
+  schemas:
+    TemplateRequestDto:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: "Template name"
+          minLength: 1
+          example: "nodejs"
+        description:
+          type: string
+          description: "Template description"
+          example: "Template in Node.JS"
+    TemplateResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "Entity identifier"
+          example: "1"
+        name:
+          type: string
+          description: "Template name"
+          example: "nodejs"
+        description:
+          type: string
+          description: "Template description"
+          example: "Template in Node.JS"
+
+    400Response:
+      description: 'Bad Request'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "40000"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Error in the request'
+          description: 'Readable message representing the status of the service result'
+        entityTypeName:
+          type: string
+          example: 'Template'
+          description: 'Model in which the error was found'
+        status:
+          type: integer
+          example: 400
+          description: 'HTTP code with which the request was responded'
+    401Response:
+      description: 'Unauthorized'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "40100"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Unauthorized'
+          description: 'Readable message representing the status of the service result'
+        entityTypeName:
+          type: string
+          example: 'Template'
+          description: 'Model in which the error was found'
+        status:
+          type: integer
+          example: 401
+          description: 'HTTP code with which the request was responded'
+    403Response:
+      description: 'Access Forbidden'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "40300"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Access Forbidden'
+          description: 'Readable message representing the status of the service result'
+        entityTypeName:
+          type: string
+          example: 'Template'
+          description: 'Model in which the error was found'
+        status:
+          type: integer
+          example: 403
+          description: 'HTTP code with which the request was responded'
+    404Response:
+      description: 'Not Found'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "40400"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Not Found'
+          description: 'Readable message representing the status of the service result'
+        entityTypeName:
+          type: string
+          example: 'Template'
+          description: 'Model in which the error was found'
+        status:
+          type: integer
+          example: 404
+          description: 'HTTP code with which the request was responded'
+    415Response:
+      description: 'Content-Type Not Supported'
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Content-Type Not Supported'
+          description: 'Readable message representing the status of the service result'
+        status:
+          type: integer
+          example: 415
+          description: 'HTTP code with which the request was responded'
+    422Response:
+      description: 'Validation errors'
+      type: object
+      properties:
+        entityTypeName:
+          type: string
+          example: 'Template'
+          description: 'Model in which the error was found'
+        validation:
+          type: array
+          items:
+            type: object
+            properties:
+              attribute:
+                type: string
+                example: 'name'
+                description: 'Field name'
+              message:
+                type: string
+                example: 'Is required'
+                description: 'Message indicating the error found in the specified field'
+        message:
+          type: string
+          example: 'Validation errors'
+          description: 'Message indicating the general error encountered'
+        status:
+          type: integer
+          example: 422
+          description: 'HTTP code with which the request was responded'
+        code:
+          type: string
+          example: "42200"
+          description: 'Business code associated with the error found'
+    500Response:
+      description: 'Internal Server Error'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "50000"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Internal Server Error'
+          description: 'Readable message representing the status of the service result'
+        status:
+          type: integer
+          example: 500
+          description: 'HTTP code with which the request was responded'
+    502Response:
+      description: 'Bad Gateway'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "50200"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Bad Gateway'
+          description: 'Readable message representing the status of the service result'
+        status:
+          type: integer
+          example: 502
+          description: 'HTTP code with which the request was responded'
+    503Response:
+      description: 'Service Unavailable'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "50300"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Service Unavailable'
+          description: 'Readable message representing the status of the service result'
+        status:
+          type: integer
+          example: 503
+          description: 'HTTP code with which the request was responded'
+    504Response:
+      description: 'Gateway Timeout'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "50400"
+          description: 'Business code associated with the error found'
+        message:
+          type: string
+          example: 'Gateway Timeout'
+          description: 'Readable message representing the status of the service result'
+        status:
+          type: integer
+          example: 504
+          description: 'HTTP code with which the request was responded'  
+  responses:
+    BadRequest:
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/400Response'
+    Unauthorized:
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401Response'
+    Forbidden:
+      description: 'Access Forbidden'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/403Response'
+    NotFound:
+      description: 'Not Found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/404Response'
+    MediaTypeNotAllowed:
+      description: 'Media Type Not Allowed'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/415Response'
+    UnprocessableEntity:
+      description: 'Non-Prosecutable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/422Response'
+    InternalServerError:
+      description: 'Internal Server Error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/500Response'
+    BadGateway:
+      description: 'Bad Gateway'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/502Response'
+    ServiceUnavailable:
+      description: 'Service Unavailable'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/503Response'
+    GatewayTimeout:
+      description: 'Gateway Timeout'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/504Response'
