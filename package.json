@@ -1,6 +1,6 @@
 {
   "name": "@creatioart/template-nodejs-express-service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "CreatioART - Template Node.js Express Service able to handle API's request",
   "keywords": [
@@ -83,13 +83,13 @@
     "@creatioart-js/express-error-handler": "^1.0.0",
     "@creatioart-js/express-logging": "^1.0.0",
     "@creatioart-js/express-security": "^1.0.1",
-    "@creatioart-js/express-service": "^1.0.0",
+    "@creatioart-js/express-service": "^1.0.1",
     "@creatioart-js/express-storage": "^1.0.0",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/i18n": "^0.13.12",
-    "@types/node": "^22.8.6",
+    "@types/node": "^22.8.7",
     "@types/uuid": "^10.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
