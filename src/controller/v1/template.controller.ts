@@ -1,9 +1,10 @@
 import 'reflect-metadata';
 
 import {Service} from 'typedi';
-import {QueryRequestHelper, TraceHelper} from '@creatioart-js/express-core';
+import {QueryRequestHelper, SearchOption, TraceHelper} from '@creatioart-js/express-core';
 import {Logger} from '@creatioart-js/express-logging';
-import {Res, JsonController, Get, Authorized, Param, Post, Body, Req, QueryParams, Put, Patch, Delete, OnUndefined} from 'routing-controllers';
+import {Res, JsonController, Get, Authorized, Param, Post, Body, Req, QueryParams, Put, Patch, Delete,
+        OnUndefined} from 'routing-controllers';
 import {ServiceLocator} from '../../locator/service.locator';
 import {PermissionConfig} from '../../config/permission.config';
 import {TemplateRequestDto} from '../../dto/template/template.request.dto';
@@ -27,6 +28,30 @@ export class TemplateController {
     Logger().info(`Event Get<Template> was received at ${new Date().toISOString()}. Trace: ${traceId}`);
 
     const searchOption = QueryRequestHelper.getSearchOptionByQueryParam([], query, traceId);
+
+    // Get Templates
+    const entityList = await ServiceLocator.TemplateService().getTemplateListDto(searchOption, traceId);
+
+    response.setHeader('count', entityList.count);
+    return entityList.list;
+  }
+
+  /**
+   * Search App Users in Deployment
+   * @param deploymentId Deployment Id
+   * @param options Search Options
+   * @param request Request
+   * @param response Response
+   * @returns App User Response List Dto
+   */
+  @Post('/search')
+  @Authorized(PermissionConfig.NO_AUTHORIZATION)
+  public async searchTemplates(@Body({options: {limit: '32mb'}}) options: any, @Req() request: any,
+                               @Res() response: any): Promise<TemplateResponseDto[]> {
+    const traceId = TraceHelper.getHTTPTraceIdentifier(request);
+    Logger().info(`Event Search<Template> was received at ${new Date().toISOString()}. Trace: ${traceId}`);
+
+    const searchOption = SearchOption.build().plainToClass(options);
 
     // Get Templates
     const entityList = await ServiceLocator.TemplateService().getTemplateListDto(searchOption, traceId);

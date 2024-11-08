@@ -91,6 +91,52 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '504':
           $ref: '#/components/responses/GatewayTimeout'
+  /v1/templates/search:
+    post:
+      tags:
+        - Template
+      summary: Search templates
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/xTraceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchOption'
+      responses:
+        '200':
+          description: Ok
+          headers:
+            count:
+              $ref: '#/components/headers/count'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplateResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '415':
+          $ref: '#/components/responses/MediaTypeNotAllowed'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
   /v1/templates/{templateId}:
     get:
       tags:
@@ -304,6 +350,75 @@ components:
         type: integer
         example: 10
   schemas:
+    SearchOption:
+      type: object
+      properties:
+        filters:
+          $ref: '#/components/schemas/Filter'
+        order:
+          $ref: '#/components/schemas/Order'
+        page:
+          type: integer
+          description: "Page"
+          example: 1
+        pageCount:
+          type: integer
+          description: "Page count"
+          example: 10
+    Filter:
+      type: array
+      items:
+        type: object
+        required:
+          - property
+          - operator
+        properties:
+          conditional:
+            type: string
+            description: "Filter conditional type"
+            enum:
+              - ";"
+              - ","
+            example: ","
+          property:
+            type: string
+            description: "Property to filter"
+            example: "name"
+          operator:
+            type: string
+            description: "Filter operator type"
+            enum:
+              - "=="
+              - "!="
+              - "<"
+              - "<="
+              - ">"
+              - ">="
+              - "=in="
+              - "=out="
+              - "=array-contains="
+              - "=array-contains-any="
+            example: "=="
+          value:
+            type: string
+            description: "Value to filter"
+            example: "ABC"
+    Order:
+      type: object
+      required:
+        - property
+      properties:
+        property:
+          type: string
+          description: "Property to sort"
+          example: "name"
+        sort:
+          type: string
+          description: "Sort type"
+          enum:
+            - ASCENDING
+            - DESCENDING
+          example: ASCENDING
     TemplateRequestDto:
       type: object
       required:
