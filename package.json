@@ -1,6 +1,6 @@
 {
   "name": "@creatioart/template-nodejs-express-service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "CreatioART - Template Node.js Express Service able to handle API's request",
   "keywords": [
@@ -16,10 +16,10 @@
   "homepage": "https://docs.creatioart.com/template/template-nodejs-express-service",
   "license": "Apache-2.0",
   "author": "CreatioART - CreatioART Support <support@creatioart.com>",
-  "main": "build/index.js",
+  "main": "build/app.js",
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:clean": "rimraf ./lib/",
+    "build:clean": "rimraf ./build/",
     "build:format": "npm run mdformat",
     "build:lint": "npx eslint ./src/** --max-warnings=0 --config=.eslintrc.json",
     "build:compile": "tsc",
