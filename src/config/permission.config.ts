@@ -1,6 +1,6 @@
 'use strict';
 
-import {PermissionType} from '../enum/permission.type';
+import {PermissionType} from '../enum/permission.type.js';
 
 /**
  * Permission Config

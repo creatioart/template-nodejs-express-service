@@ -24,6 +24,15 @@ This template can be applied to any web component such as:
 1. [License](#license)
 1. [Change Log](#change-log)
 
+### Templates for use
+
+Service templates are public. `README.md` file for each template contains instructions for running it.
+
+| Source Code                                                                        | Status                                                                                               |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [Express Service](https://github.com/creatioart/template-nodejs-express-service)   | [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]() |
+| [Express Function](https://github.com/creatioart/template-nodejs-express-function) | [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]() |
+
 ## Artifact
 
 | Element       | Description                                 |
@@ -38,6 +47,9 @@ This template can be applied to any web component such as:
 To build and run the application you need:
 
 - [Node.js 20](https://nodejs.org/dist/v20.18.0)
+- Projects must configure [TypeScript](https://typescriptlang.org) to use types from the ECMAScript modules that have a:
+  - [`compilerOptions.allowJs`](https://typescriptlang.org/tsconfig#allowJs) should be `true`.
+  - [`compilerOptions.module`](https://typescriptlang.org/tsconfig#module) should be `"node16"` or `"nodenext"`.
 
 ## Project organization
 

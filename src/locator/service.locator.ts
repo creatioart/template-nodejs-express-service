@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
 import {Container} from 'typedi';
-import {TemplateService} from '../service/template.service';
-import {ITemplateService} from '../service/interface/itemplate.service';
+import {TemplateService} from '../service/template.service.js';
+import {ITemplateService} from '../service/interface/itemplate.service.js';
 
 /**
  * Service Locator

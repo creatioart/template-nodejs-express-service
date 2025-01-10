@@ -2,10 +2,10 @@ import 'reflect-metadata';
 
 import {Container} from 'typedi';
 import {Logger} from '@creatioart-js/express-logging';
-import {ResourceLocator} from '../../locator/resource.locator';
-import {serviceConfigMap} from '../../config/service.config.map';
+import {ResourceLocator} from '../../locator/resource.locator.js';
+import {serviceConfigMap} from '../../config/service.config.map.js';
 import {LocaleService, ValidationMessage} from '@creatioart-js/express-core';
-import {CoreServiceLocator} from '../../locator/core.service.locator';
+import {CoreServiceLocator} from '../../locator/core.service.locator.js';
 import {StaticTokenAuthorizationService} from '@creatioart-js/express-security';
 
 /**

@@ -4,14 +4,14 @@ import {exit} from 'process';
 import {Container} from 'typedi';
 import {ErrorHelper} from '@creatioart-js/express-core';
 import {Logger} from '@creatioart-js/express-logging';
-import * as appContainerEnv from './_env';
-import * as appContainerI18n from './_i18n';
-import * as appContainerLogger from './_logger';
-import * as appContainerValidator from './_validator';
-import * as appContainerServices from './_services';
+import * as appContainerEnv from './_env.js';
+import * as appContainerI18n from './_i18n.js';
+import * as appContainerLogger from './_logger.js';
+import * as appContainerValidator from './_validator.js';
+import * as appContainerServices from './_services.js';
 import {CustomErrorHandler, ExpressErrorHandlerMiddleware} from '@creatioart-js/express-error-handler';
 import {ExpressGlobalAppMiddleware} from '@creatioart-js/express-security';
-import {CoreServiceLocator} from '../../locator/core.service.locator';
+import {CoreServiceLocator} from '../../locator/core.service.locator.js';
 
 /**
  * Initialize App

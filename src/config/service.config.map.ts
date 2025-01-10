@@ -1,6 +1,6 @@
 'use strict';
 
-import {ServiceConfigMap} from './type/service.config.map';
+import {ServiceConfigMap} from './type/service.config.map.js';
 
 /**
  * Service Config Map

@@ -1,18 +1,18 @@
 import 'reflect-metadata';
 
 import {exit} from 'process';
-import * as path from 'path';
-import * as morgan from 'morgan';
-import * as express from 'express';
-import * as compression from 'compression';
+import morgan from 'morgan';
+import express from 'express';
+import compression from 'compression';
 import {Logger} from '@creatioart-js/express-logging';
 import {EnvironmentType, ErrorHelper} from '@creatioart-js/express-core';
 import {Action, useExpressServer, useContainer} from 'routing-controllers';
 import {ExpressErrorHandlerMiddleware} from '@creatioart-js/express-error-handler';
 import {createExpressJsonMiddleware, createExpressUrlencodedMiddleware, ExpressGlobalAppMiddleware,
         SecurityDirectiveType, setExpressAppSecurity} from '@creatioart-js/express-security';
-import * as appConainer from './config/container';
-import * as securityApp from './config/security';
+import {TemplateController} from './controller/v1/template.controller.js';
+import * as appConainer from './config/container/index.js';
+import * as securityApp from './config/security/index.js';
 
 /**
  * Setup routing-controllers to use typedi container.
@@ -75,7 +75,7 @@ useExpressServer(app, {
     // Special function used to check user authorization roles per request.
     return await securityApp.authorizationCheckerApp(action, roles);
   },
-  controllers: [path.join(__dirname, '/controller/**/*.js')],
+  controllers: [TemplateController],
   defaultErrorHandler: false,
   middlewares: [ExpressErrorHandlerMiddleware, ExpressGlobalAppMiddleware],
   routePrefix: '/template/nodejs-express-service',
@@ -95,4 +95,4 @@ app.listen(PORT, () => {
   Logger().info(`Server listening at http://127.0.0.1:${PORT} ...`);
 });
 
-export = app;
+export default app;

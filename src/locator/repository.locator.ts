@@ -2,8 +2,8 @@ import 'reflect-metadata';
 
 import {Container} from 'typedi';
 import {IRepositoryManager} from '@creatioart-js/express-storage';
-import {Template} from '../entity/template';
-import {TemplateRepository} from '../repository/template.repository';
+import {Template} from '../entity/template.js';
+import {TemplateRepository} from '../repository/template.repository.js';
 
 /**
  * Repository Locator

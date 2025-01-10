@@ -6,7 +6,7 @@ import {Filter, Order, BaseList, SortType, ErrorStatus, OperatorType} from '@cre
 import {IRepositoryManager} from '@creatioart-js/express-storage';
 import {ErrorResponse} from '@creatioart-js/express-error-handler';
 import {ErrorCode, InternalError} from '@creatioart-js/express-error';
-import {Template} from '../entity/template';
+import {Template} from '../entity/template.js';
 
 // Template Repository
 @Service()

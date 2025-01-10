@@ -2,7 +2,6 @@
 .configuration/
 .git/
 .husky/
-.nyc_output/
 coverage/
 docs/
 node_modules/

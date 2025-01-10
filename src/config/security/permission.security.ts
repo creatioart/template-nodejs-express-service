@@ -1,9 +1,9 @@
 import {Logger} from '@creatioart-js/express-logging';
 import {ErrorStatus} from '@creatioart-js/express-core';
-import {CoreServiceLocator} from '../../locator/core.service.locator';
+import {CoreServiceLocator} from '../../locator/core.service.locator.js';
 import {Action} from 'routing-controllers';
 import {ServiceAccessDto} from '@creatioart-js/express-security';
-import {PermissionConfig} from '../permission.config';
+import {PermissionConfig} from '../permission.config.js';
 
 /**
  * Special function used to check permission app per request.

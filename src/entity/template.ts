@@ -4,7 +4,7 @@ import {IsNotEmpty, IsString, validate} from 'class-validator';
 import {BaseEntity, BaseError, ClassNameGetter, ErrorStatus, StringHelper, ValidationOptionsDecorator, ValidationType,
         ValidatorHelper} from '@creatioart-js/express-core';
 import {ErrorCode, ValidationError} from '@creatioart-js/express-error';
-import {CoreServiceLocator} from '../locator/core.service.locator';
+import {CoreServiceLocator} from '../locator/core.service.locator.js';
 
 /**
  * Template Entity

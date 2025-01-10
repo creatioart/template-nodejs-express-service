@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import {Container} from 'typedi';
-import {ServiceConfigMap} from '../config/type/service.config.map';
+import {ServiceConfigMap} from '../config/type/service.config.map.js';
 
 /**
  * Core Config Map Locator

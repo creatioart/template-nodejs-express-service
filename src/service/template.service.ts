@@ -6,12 +6,12 @@ import {Logger} from '@creatioart-js/express-logging';
 import {EntityError, ErrorCode, InternalError} from '@creatioart-js/express-error';
 import {ErrorResponse} from '@creatioart-js/express-error-handler';
 import {BaseService} from '@creatioart-js/express-storage';
-import {Template} from '../entity/template';
-import {TemplateRequestDto} from '../dto/template/template.request.dto';
-import {TemplateResponseDto} from '../dto/template/template.response.dto';
-import {ITemplateService} from './interface/itemplate.service';
-import {CoreServiceLocator} from '../locator/core.service.locator';
-import {RepositoryLocator} from '../locator/repository.locator';
+import {Template} from '../entity/template.js';
+import {TemplateRequestDto} from '../dto/template/template.request.dto.js';
+import {TemplateResponseDto} from '../dto/template/template.response.dto.js';
+import {ITemplateService} from './interface/itemplate.service.js';
+import {CoreServiceLocator} from '../locator/core.service.locator.js';
+import {RepositoryLocator} from '../locator/repository.locator.js';
 
 /**
  * Template Service

@@ -5,10 +5,10 @@ import {QueryRequestHelper, SearchOption, TraceHelper} from '@creatioart-js/expr
 import {Logger} from '@creatioart-js/express-logging';
 import {Res, JsonController, Get, Authorized, Param, Post, Body, Req, QueryParams, Put, Patch, Delete,
         OnUndefined} from 'routing-controllers';
-import {ServiceLocator} from '../../locator/service.locator';
-import {PermissionConfig} from '../../config/permission.config';
-import {TemplateRequestDto} from '../../dto/template/template.request.dto';
-import {TemplateResponseDto} from '../../dto/template/template.response.dto';
+import {ServiceLocator} from '../../locator/service.locator.js';
+import {PermissionConfig} from '../../config/permission.config.js';
+import {TemplateRequestDto} from '../../dto/template/template.request.dto.js';
+import {TemplateResponseDto} from '../../dto/template/template.response.dto.js';
 
 @Service()
 @JsonController('/v1/templates')

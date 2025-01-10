@@ -1,0 +1,45 @@
+{
+  "bail": false,
+  "verbose": false,
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "roots": [
+    "<rootDir>/src",
+    "<rootDir>/test"
+  ],
+  "transform": {
+    "^.+\\.(mt|t|cj|j)s$": [
+      "ts-jest",
+      {
+        "useESM": true
+      }
+    ]
+  },
+  "collectCoverage": true,
+  "coverageReporters": ["text", "html"],
+  "testRegex": "(/test/.*\\.spec\\.ts)$",
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json", "node"],
+  "setupFilesAfterEnv": ["<rootDir>/test/.setup/jest.setup.ts"],
+  "extensionsToTreatAsEsm": [".ts"],
+  "moduleNameMapper": {
+    "^(\\.{1,2}/.*)\\.js$": "$1"
+  },
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/build/",
+    "<rootDir>/test/.mock/"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/build/",
+    "<rootDir>/test/.mock/"
+  ],
+  "testTimeout": 5000,
+  "globals": {},
+  "coverageThreshold": {
+    "global": {
+      "branches": 0,
+      "functions": 0,
+      "lines": 0,
+      "statements": 0
+    }
+  }
+}

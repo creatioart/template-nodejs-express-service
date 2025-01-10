@@ -1,8 +1,8 @@
 import {BaseList, SearchOption} from '@creatioart-js/express-core';
 import {IBaseService} from '@creatioart-js/express-storage';
-import {TemplateRequestDto} from '../../dto/template/template.request.dto';
-import {TemplateResponseDto} from '../../dto/template/template.response.dto';
-import {Template} from '../../entity/template';
+import {TemplateRequestDto} from '../../dto/template/template.request.dto.js';
+import {TemplateResponseDto} from '../../dto/template/template.response.dto.js';
+import {Template} from '../../entity/template.js';
 
 /**
  * ITemplate Service

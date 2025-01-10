@@ -3,10 +3,10 @@ import {Logger} from '@creatioart-js/express-logging';
 import {EnvironmentType, ErrorStatus, TraceHelper} from '@creatioart-js/express-core';
 import {EntityError, ErrorCode, InternalError, UncodedError} from '@creatioart-js/express-error';
 import {ErrorResponse} from '@creatioart-js/express-error-handler';
-import {CoreServiceLocator} from '../../locator/core.service.locator';
-import {authorizationCheckerPermissionApp} from './permission.security';
+import {CoreServiceLocator} from '../../locator/core.service.locator.js';
+import {authorizationCheckerPermissionApp} from './permission.security.js';
 import {ServiceAccessDto} from '@creatioart-js/express-security';
-import {CoreConfigMapLocator} from '../../locator/core.config.map.locator';
+import {CoreConfigMapLocator} from '../../locator/core.config.map.locator.js';
 
 /**
  * Special function used to check user authorization roles per request.
