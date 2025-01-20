@@ -1,6 +1,6 @@
 {
   "name": "@creatioart/template-nodejs-express-service",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "CreatioART - Template Node.js Express Service able to handle API's request",
   "keywords": [
