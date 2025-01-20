@@ -38,7 +38,7 @@
     "strict": true,
     "skipLibCheck": true,
     "target": "ES2022",
-    "typeRoots": ["./node_modules/*/node_modules/@types/"]
+    "typeRoots": ["./node_modules/@types/"]
   },
   "typedocOptions": {
     "out": "docs",
