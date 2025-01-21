@@ -17,10 +17,6 @@
   "license": "Apache-2.0",
   "author": "CreatioART - CreatioART Support <support@creatioart.com>",
   "type": "module",
-  "exports": {
-    "types": "./build/index.d.ts",
-    "default": "./build/index.js"
-  },
   "scripts": {
     "build": "npm-run-all build:*",
     "build:clean": "rimraf ./build/",
