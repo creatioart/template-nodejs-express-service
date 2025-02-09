@@ -4,7 +4,7 @@ import {Service} from 'typedi';
 import {QueryRequestHelper, SearchOption, TraceHelper} from '@creatioart-js/express-core';
 import {Logger} from '@creatioart-js/express-logging';
 import {Res, JsonController, Get, Authorized, Param, Post, Body, Req, QueryParams, Put, Patch, Delete,
-        OnUndefined} from 'routing-controllers';
+        OnUndefined} from '@creatioart-js/routing-controllers';
 import {ServiceLocator} from '../../locator/service.locator.js';
 import {PermissionConfig} from '../../config/permission.config.js';
 import {TemplateRequestDto} from '../../dto/template/template.request.dto.js';

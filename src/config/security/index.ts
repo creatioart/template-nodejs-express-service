@@ -1,4 +1,4 @@
-import {Action} from 'routing-controllers';
+import {Action} from '@creatioart-js/routing-controllers';
 import {Logger} from '@creatioart-js/express-logging';
 import {EnvironmentType, ErrorStatus, TraceHelper} from '@creatioart-js/express-core';
 import {EntityError, ErrorCode, InternalError, UncodedError} from '@creatioart-js/express-error';

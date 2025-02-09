@@ -5,7 +5,7 @@
 
 # ---- Package Builder -----
 # Use the official lightweight Node.js 18 image. https://hub.docker.com/_/node
-FROM node:20-alpine as package-builder
+FROM node:20-alpine AS package-builder
 
 LABEL maintainer="CreatioART - CreatioART Support <support@creatioart.com>"
 

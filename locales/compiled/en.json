@@ -44,8 +44,8 @@
   "personal_access_token_expiration_date": "Personal access token expiration date must be bigger or equal than today",
   "is_domain": "Domain is invalid. This must match with the expression: custom.example.com",
   "string_array_duplicated": {
-  "one": "%s item is not unique",
-  "other": "%s items are not unique"
+    "one": "%s item is not unique",
+    "other": "%s items are not unique"
   },
   "is_ip_v4": "{{field}} must be a valid address with type IPv4",
   "is_ip_v6": "{{field}} must be a valid address with type IPv6",

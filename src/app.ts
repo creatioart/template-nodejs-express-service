@@ -6,7 +6,7 @@ import express from 'express';
 import compression from 'compression';
 import {Logger} from '@creatioart-js/express-logging';
 import {EnvironmentType, ErrorHelper} from '@creatioart-js/express-core';
-import {Action, useExpressServer, useContainer} from 'routing-controllers';
+import {Action, useExpressServer, useContainer} from '@creatioart-js/routing-controllers';
 import {ExpressErrorHandlerMiddleware} from '@creatioart-js/express-error-handler';
 import {createExpressJsonMiddleware, createExpressUrlencodedMiddleware, ExpressGlobalAppMiddleware,
         SecurityDirectiveType, setExpressAppSecurity} from '@creatioart-js/express-security';

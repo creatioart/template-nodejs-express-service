@@ -1,7 +1,7 @@
 import {Logger} from '@creatioart-js/express-logging';
 import {ErrorStatus} from '@creatioart-js/express-core';
 import {CoreServiceLocator} from '../../locator/core.service.locator.js';
-import {Action} from 'routing-controllers';
+import {Action} from '@creatioart-js/routing-controllers';
 import {ServiceAccessDto} from '@creatioart-js/express-security';
 import {PermissionConfig} from '../permission.config.js';
 
