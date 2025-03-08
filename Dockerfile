@@ -47,7 +47,7 @@ RUN echo "America/Santiago" > /etc/timezone
 WORKDIR /usr/app
 
 # Add envs
-ENV PORT="80"
+ENV PORT="8080"
 
 USER root
 
@@ -81,7 +81,7 @@ RUN addgroup -S app && adduser -S app -G app
 RUN chown -R app:app /usr/app
 USER app
 
-EXPOSE 80
+EXPOSE 8080
 
 # Run the web service on container startup.
 CMD [ "npm", "start" ]

@@ -32,6 +32,7 @@ Service templates are public. `README.md` file for each template contains instru
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | [Express Service](https://github.com/creatioart/template-nodejs-express-service)   | [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]() |
 | [Express Function](https://github.com/creatioart/template-nodejs-express-function) | [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]() |
+| [GrapHQL Servicen](https://github.com/creatioart/template-nodejs-graphql-service)  | [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]() |
 
 ## Artifact
 
