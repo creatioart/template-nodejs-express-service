@@ -1,0 +1,5 @@
+{
+  "template_not_found": "Plantilla no encontrada",
+  "error_creating_template": "Ocurrió un error al crear la plantilla",
+  "error_updating_template": "Ocurrió un error al actualizar la plantilla"
+}

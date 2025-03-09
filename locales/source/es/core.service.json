@@ -1,0 +1,10 @@
+{
+  "ok": "OK",
+  "unauthorized": "No autorizado",
+  "validation_errors": "Errores de validación",
+  "fail_initialize_app": "Fallo al inicializar la aplicación",
+  "complete_initialize_app": "Inicialización de la aplicación completada",
+  "access_denied": "Acceso denegado",
+  "asset_access_denied": "Acceso a recursos denegado",
+  "internal_server_error": "Error interno del servidor"
+}

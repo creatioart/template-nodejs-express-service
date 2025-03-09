@@ -1,7 +1,6 @@
 # CreatioART: Template Node.js Express Service
 
 [![Release Level](https://img.shields.io/badge/release%20level-stable-brightgreen.svg?style=flat)]()
-[![NPM Core Version](https://img.shields.io/npm/v/@creatioart-js/express-core.svg)](https://www.npmjs.com/package/@creatioart-js/express-core)
 
 CreatioART - Template Node.js Express Service for Express framework it's a template for a Restful API.
 This template can be applied to any web component such as:

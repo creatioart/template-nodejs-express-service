@@ -13,7 +13,7 @@ export function registerI18n(): void {
   const i18n = new I18n();
   i18n.configure({
     // Setup some locales - other locales default to en silently
-    locales: ['en'],
+    locales: ['en', 'es'],
 
     // Alter a site wide default locale
     defaultLocale: 'en',
@@ -36,9 +36,6 @@ export function registerI18n(): void {
       __n: 'translateN',
     },
   });
-
-  // Set Default Locale
-  i18n.setLocale('en');
 
   // Set Container
   Container.set('I18n', i18n);
