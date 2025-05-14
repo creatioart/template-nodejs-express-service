@@ -2,6 +2,7 @@
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+name: "$(Build.DefinitionName) $(date:yyyyMMdd)$(rev:.r)"
 
 trigger:
 - main
@@ -10,8 +11,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  group: Template
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+- group: template-group
+- name: 'npm_config_cache'
+  value: $(Pipeline.Workspace)/.npm
 
 steps:
 - checkout: self
@@ -29,6 +31,13 @@ steps:
       npm | "$(Agent.OS)"
     path: $(npm_config_cache)
   displayName: Cache npm
+
+- script: |
+    echo "$(System.AccessToken)"
+    echo "$(AZURE_ORGANIZATION_NAME)"
+    echo "$(AZURE_PROJECT_NAME)"
+    echo "$(Build.Repository.Name)"
+  displayName: 'Test'
 
 - script: |
     npm install
@@ -54,8 +63,10 @@ steps:
     git clone --mirror https://$(System.AccessToken)@dev.azure.com/$(AZURE_ORGANIZATION_NAME)/$(AZURE_PROJECT_NAME)/_git/$(Build.Repository.Name) repo-mirror
     cd repo-mirror
   env:
+    System.AccessToken: $(System.AccessToken)
     AZURE_ORGANIZATION_NAME: $(AZURE_ORGANIZATION_NAME)
     AZURE_PROJECT_NAME: $(AZURE_PROJECT_NAME)
+    Build.Repository.Name: $(Build.Repository.Name)
   displayName: "Mirror repository clone from Azure DevOps"
 
 - script: |
@@ -64,4 +75,5 @@ steps:
   env:
     GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
     GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
+    Build.Repository.Name: $(Build.Repository.Name)
   displayName: "Push mirror repository to GitHub"
