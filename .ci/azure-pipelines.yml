@@ -1,0 +1,67 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  group: Template
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+steps:
+- checkout: self
+  persistCredentials: "true"
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+- task: Cache@2
+  inputs:
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    restoreKeys: |
+      npm | "$(Agent.OS)"
+    path: $(npm_config_cache)
+  displayName: Cache npm
+
+- script: |
+    npm install
+  displayName: 'Install npm dependencies'
+
+- script: |
+    npm run test
+  displayName: 'Run build & test artifact'
+
+- script: |
+    npmVersion=$(node -p "require('./package.json').version")
+    echo "##vso[task.setvariable variable=npmVersion]$npmVersion"
+  displayName: 'Set variable'
+
+- script: |
+    git config --global user.email "support@creatioart.com"
+    git config --global user.name "CreatioART"
+    git tag -a "$(npmVersion)" -m "New version: $(npmVersion)"
+    git push origin --tags
+  displayName: 'Create artifact tag'
+
+- script: |
+    git clone --mirror https://$(System.AccessToken)@dev.azure.com/$(AZURE_ORGANIZATION_NAME)/$(AZURE_PROJECT_NAME)/_git/$(Build.Repository.Name) repo-mirror
+    cd repo-mirror
+  env:
+    AZURE_ORGANIZATION_NAME: $(AZURE_ORGANIZATION_NAME)
+    AZURE_PROJECT_NAME: $(AZURE_PROJECT_NAME)
+  displayName: "Mirror repository clone from Azure DevOps"
+
+- script: |
+    git remote set-url --push origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
+    git push --mirror
+  env:
+    GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
+    GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
+  displayName: "Push mirror repository to GitHub"
