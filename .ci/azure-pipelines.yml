@@ -65,7 +65,7 @@ steps:
 
 - script: |
     git remote set-url origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
-    git push origin HEAD:main --force --follow-tags
+    git push origin
   env:
     GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
     GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
