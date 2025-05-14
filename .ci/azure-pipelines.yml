@@ -56,21 +56,16 @@ steps:
     git clone https://$(System.AccessToken)@dev.azure.com/$(AZURE_ORGANIZATION_NAME)/$(AZURE_PROJECT_NAME)/_git/$(Build.Repository.Name) repo-mirror
     cd repo-mirror
     git pull origin
+    git remote set-url origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
+    git push origin --force --follow-tags
   env:
     System.AccessToken: $(System.AccessToken)
     AZURE_ORGANIZATION_NAME: $(AZURE_ORGANIZATION_NAME)
     AZURE_PROJECT_NAME: $(AZURE_PROJECT_NAME)
-    Build.Repository.Name: $(Build.Repository.Name)
-  displayName: "Mirror repository clone from Azure DevOps"
-
-- script: |
-    git remote set-url origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
-    git push origin
-  env:
     GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
     GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
     Build.Repository.Name: $(Build.Repository.Name)
-  displayName: "Push mirror repository to GitHub"
+  displayName: "Mirror repository from Azure DevOps to GitHub"
 
 - script: |
     cd ..
