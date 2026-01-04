@@ -2,72 +2,86 @@
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-name: "$(Build.DefinitionName) $(date:yyyyMMdd)$(rev:.r)"
 
 trigger:
-- main
-
-pool:
-  vmImage: 'ubuntu-latest'
+  batch: "true"
+  branches:
+    include:
+      - main
 
 variables:
-- group: template-group
-- name: 'npm_config_cache'
-  value: $(Pipeline.Workspace)/.npm
+  - group: template-group
+  - name: 'npm_config_cache'
+    value: $(Pipeline.Workspace)/.npm
 
-steps:
-- checkout: self
-  persistCredentials: "true"
+stages:
+  - stage: Compile
+    displayName: "Compile"
+    jobs:
+      - job: Build
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '24.x'
+            displayName: 'Install Node.js'
+          - task: Cache@2
+            inputs:
+              key: 'npm | "$(Agent.OS)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+            displayName: Cache npm
+          - script: |
+              npm install
+            displayName: 'Install npm dependencies'
+          - script: |
+              npm run test
+            displayName: 'Run build & test artifact'
+          - script: |
+              npmVersion=$(node -p "require('./package.json').version")
+              echo "##vso[task.setvariable variable=npmVersion]$npmVersion"
+            displayName: 'Set variable'
+          - script: |
+              git config --global user.email "support@creatioart.com"
+              git config --global user.name "CreatioART"
+              git tag -a "$(npmVersion)" -m "New version: $(npmVersion)"
+              git push origin --tags
+            displayName: 'Create artifact tag'
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+  - stage: Mirror
+    displayName: "Mirror Repository"
+    dependsOn: Compile
+    condition: succeeded()
+    jobs:
+      - job: Mirror
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - task: PowerShell@2
+            displayName: "Mirror repository from Azure DevOps to GitHub"
+            env:
+              System.AccessToken: $(System.AccessToken)
+              AZURE_ORGANIZATION_NAME: $(AZURE_ORGANIZATION_NAME)
+              AZURE_PROJECT_NAME: $(AZURE_PROJECT_NAME)
+              GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
+              GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
+              Build.Repository.Name: $(Build.Repository.Name)
+            inputs:
+              targetType: "inline"
+              script: |
+                git clone https://$(System.AccessToken)@dev.azure.com/$(AZURE_ORGANIZATION_NAME)/$(AZURE_PROJECT_NAME)/_git/$(Build.Repository.Name) repo-mirror
+                cd repo-mirror
+                git pull origin
+                git remote set-url origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
+                git push origin --force --follow-tags
 
-- task: Cache@2
-  inputs:
-    key: 'npm | "$(Agent.OS)" | package-lock.json'
-    restoreKeys: |
-      npm | "$(Agent.OS)"
-    path: $(npm_config_cache)
-  displayName: Cache npm
-
-- script: |
-    npm install
-  displayName: 'Install npm dependencies'
-
-- script: |
-    npm run test
-  displayName: 'Run build & test artifact'
-
-- script: |
-    npmVersion=$(node -p "require('./package.json').version")
-    echo "##vso[task.setvariable variable=npmVersion]$npmVersion"
-  displayName: 'Set variable'
-
-- script: |
-    git config --global user.email "support@creatioart.com"
-    git config --global user.name "CreatioART"
-    git tag -a "$(npmVersion)" -m "New version: $(npmVersion)"
-    git push origin --tags
-  displayName: 'Create artifact tag'
-
-- script: |
-    git clone https://$(System.AccessToken)@dev.azure.com/$(AZURE_ORGANIZATION_NAME)/$(AZURE_PROJECT_NAME)/_git/$(Build.Repository.Name) repo-mirror
-    cd repo-mirror
-    git pull origin
-    git remote set-url origin https://$(GITHUB_ACCESS_TOKEN)@github.com/$(GITHUB_ORGANIZATION_NAME)/$(Build.Repository.Name).git
-    git push origin --force --follow-tags
-  env:
-    System.AccessToken: $(System.AccessToken)
-    AZURE_ORGANIZATION_NAME: $(AZURE_ORGANIZATION_NAME)
-    AZURE_PROJECT_NAME: $(AZURE_PROJECT_NAME)
-    GITHUB_ACCESS_TOKEN: $(GITHUB_ACCESS_TOKEN)
-    GITHUB_ORGANIZATION_NAME: $(GITHUB_ORGANIZATION_NAME)
-    Build.Repository.Name: $(Build.Repository.Name)
-  displayName: "Mirror repository from Azure DevOps to GitHub"
-
-- script: |
-    cd ..
-    rm -rf repo-mirror
-  displayName: "Clean mirror repository"
+          - task: PowerShell@2
+            displayName: "Clean mirror repository"
+            condition: always()
+            inputs:
+              targetType: "inline"
+              script: |
+                cd ..
+                rm -rf repo-mirror

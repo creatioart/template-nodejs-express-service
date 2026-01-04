@@ -5,7 +5,7 @@
 
 # ---- Package Builder -----
 # Use the official lightweight Node.js 18 image. https://hub.docker.com/_/node
-FROM node:20-alpine AS package-builder
+FROM node:24-alpine AS package-builder
 
 LABEL maintainer="CreatioART - CreatioART Support <support@creatioart.com>"
 
@@ -35,7 +35,7 @@ COPY . ./
 RUN npm run build
 
 # Use the official lightweight Node.js 18 image. https://hub.docker.com/_/node
-FROM node:20-alpine
+FROM node:24-alpine
 
 # update packages (Enable only if additional packages need to be installed)
 #RUN apk update
@@ -68,8 +68,8 @@ COPY --from=package-builder /usr/app/build/ ./build/
 # Copy local langs to the container image.
 COPY ./locales/compiled/ ./locales/compiled/
 
-# Copy to the container image.
-COPY . ./
+# Copy LICENSE to the container image.
+COPY LICENSE ./
 
 # Clean up
 RUN rm -rf /var/cache/apk/* && \

@@ -46,7 +46,7 @@ Service templates are public. `README.md` file for each template contains instru
 
 To build and run the application you need:
 
-- [Node.js 20](https://nodejs.org/dist/v20.18.0)
+- [Node.js 24](https://nodejs.org/dist/v24.12.0)
 - Projects must configure [TypeScript](https://typescriptlang.org) to use types from the ECMAScript modules that have a:
   - [`compilerOptions.allowJs`](https://typescriptlang.org/tsconfig#allowJs) should be `true`.
   - [`compilerOptions.module`](https://typescriptlang.org/tsconfig#module) should be `"node16"` or `"nodenext"`.
@@ -66,19 +66,19 @@ The code is organized as follows:
 
 ## Building from Source
 
-1. Install Node.js 20 - [Node.js 20 Download](https://nodejs.org/dist/v20.18.0)
+1. Install Node.js 24 - [Node.js 24 Download](https://nodejs.org/dist/v24.12.0)
 1. Install dependencies: npm install
 1. Run compile: npm run build
 
 ## Test the Artifact
 
-1. Install Node.js 20 - [Node.js 20 Download](https://nodejs.org/dist/v20.18.0)
+1. Install Node.js 24 - [Node.js 24 Download](https://nodejs.org/dist/v24.12.0)
 1. Install dependencies: npm install
 1. Run test: npm run test
 
 ## Run in Local Mode
 
-1. Install Node.js 20 - [Node.js 20 Download](https://nodejs.org/dist/v20.18.0)
+1. Install Node.js 24 - [Node.js 24 Download](https://nodejs.org/dist/v24.12.0)
 1. Install dependencies: npm install
 1. Create the enviroment file `.configuration\local.env` from the `.configuration\example.env` file.
 1. Run develop: npm run dev
@@ -98,7 +98,7 @@ Made with ❤️ by the CreatioART team.
 ## Contribute
 
 If you are interested in fixing issues and contributing directly to the code,
-please contact to the project manager. Here is how you can contribute to CreatioART.template-nodejs-express-service:
+please contact to [CreatioART Team](mailto:contact@creatioart.com). Here is how you can contribute to CreatioART.template-nodejs-express-service:
 
 - Submit bugs and help us verify fixes
 - Submit pull requests for bug fixes and features and discuss existing proposals
