@@ -22,6 +22,8 @@ stages:
         pool:
           vmImage: "ubuntu-latest"
         steps:
+          - checkout: self
+            persistCredentials: "true"
           - task: NodeTool@0
             inputs:
               versionSpec: '24.x'
